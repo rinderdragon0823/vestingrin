@@ -1,0 +1,200 @@
+:root {
+  --ground: #0b0b0a;
+  --bone: #e6dfcf;
+  --bone-dim: rgba(230, 223, 207, 0.52);
+  --bone-faint: rgba(230, 223, 207, 0.28);
+  --rust: #c98a3d;
+  --line: rgba(230, 223, 207, 0.16);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background: var(--ground);
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--bone);
+  -webkit-font-smoothing: antialiased;
+  cursor: crosshair;
+}
+
+#field {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.frame span {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  border: 0 solid var(--line);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.frame-tl { top: 18px; left: 18px; border-top-width: 1px; border-left-width: 1px; }
+.frame-tr { top: 18px; right: 18px; border-top-width: 1px; border-right-width: 1px; }
+.frame-bl { bottom: 18px; left: 18px; border-bottom-width: 1px; border-left-width: 1px; }
+.frame-br { bottom: 18px; right: 18px; border-bottom-width: 1px; border-right-width: 1px; }
+
+.mark {
+  position: fixed;
+  left: 40px;
+  bottom: 42px;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  animation: arrive 2.4s ease 0.4s forwards;
+}
+
+.mark h1 {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  color: var(--bone);
+}
+
+.mark p {
+  margin-top: 8px;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: var(--bone-dim);
+}
+
+.meta {
+  position: fixed;
+  top: 34px;
+  right: 42px;
+  z-index: 4;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--bone-faint);
+  pointer-events: none;
+  text-transform: lowercase;
+}
+
+.meta em { font-style: normal; color: var(--bone-dim); }
+.meta .sep { margin: 0 8px; opacity: 0.5; }
+.meta-row { text-align: right; }
+.meta-last { margin-top: 7px; text-align: right; }
+.meta-last .k { opacity: 0.6; }
+.meta-last #ledger-last { color: var(--bone-dim); }
+
+#menu-btn {
+  position: fixed;
+  top: 34px;
+  left: 42px;
+  z-index: 6;
+  background: none;
+  border: none;
+  padding: 6px 4px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: var(--bone-faint);
+  cursor: pointer;
+}
+
+#menu-btn:hover { color: var(--bone); }
+
+#panel {
+  position: fixed;
+  top: 64px;
+  left: 42px;
+  z-index: 6;
+  background: var(--ground);
+  border: 1px solid var(--line);
+  padding: 4px 0;
+  min-width: 148px;
+}
+
+#panel button {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  background: none;
+  border: none;
+  padding: 8px 14px;
+  text-align: left;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: var(--bone-dim);
+  cursor: pointer;
+}
+
+#panel button:hover { color: var(--bone); }
+
+#guide {
+  position: fixed;
+  top: 64px;
+  left: 42px;
+  z-index: 6;
+  max-width: 320px;
+  background: var(--ground);
+  border: 1px solid var(--line);
+  padding: 14px 16px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  color: var(--bone-dim);
+}
+
+.hint {
+  position: fixed;
+  right: 42px;
+  bottom: 42px;
+  z-index: 4;
+  max-width: 240px;
+  text-align: right;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  color: var(--bone-faint);
+  pointer-events: none;
+  opacity: 0;
+  animation: arrive 2.4s ease 1.2s forwards;
+}
+
+@keyframes arrive { to { opacity: 1; } }
+
+@media (max-width: 640px) {
+  .mark { left: 28px; bottom: 30px; }
+  .mark h1 { font-size: 13px; }
+  .meta { top: 26px; right: 28px; }
+  #menu-btn { top: 18px; left: 24px; padding: 14px 12px; }
+  #panel { top: 66px; left: 24px; }
+  #guide { top: 66px; left: 24px; right: 24px; max-width: none; }
+  .hint {
+    right: 28px;
+    left: 28px;
+    bottom: 74px;
+    max-width: none;
+    text-align: left;
+  }
+  body { cursor: none; }
+}

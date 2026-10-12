@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VESTIGRIN — A study in remembered motion</title>
+<meta name="description" content="VESTIGRIN — a quiet study in remembered motion. Six drifting forms watch, remember, and slowly imitate the way you move.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="field" aria-label="Dark field where pale drifting forms remember movement"></canvas>
+
+<div class="frame" aria-hidden="true">
+  <span class="frame-tl"></span>
+  <span class="frame-tr"></span>
+  <span class="frame-bl"></span>
+  <span class="frame-br"></span>
+</div>
+
+<header class="mark">
+  <h1>VESTIGRIN</h1>
+  <p>a study in remembered motion</p>
+</header>
+
+<button id="menu-btn" aria-label="open menu" aria-expanded="false">menu</button>
+
+<nav id="panel" aria-label="controls" hidden>
+  <button type="button" data-act="pause">pause</button>
+  <button type="button" data-act="reset">reset</button>
+  <button type="button" data-act="guide">guide</button>
+  <button type="button" data-act="export">export</button>
+  <button type="button" data-act="import">import</button>
+  <button type="button" data-act="share">share</button>
+  <input type="file" id="import-file" accept="application/json,.json" hidden>
+</nav>
+
+<div id="guide" hidden>
+  <p>move slowly — leave a trace</p>
+  <p>trace the faint figure — teach it</p>
+  <p>hold — gather them · stillness — they rehearse</p>
+  <p>goal — 6/6 know you, then they move as one</p>
+  <p>space pause · h guide · e export · s share · r reset twice</p>
+  <p>memory stays in this browser · shared links are simplified</p>
+</div>
+
+<aside class="meta" id="ledger">
+  <div class="meta-row"><span id="ledger-state">drifting</span><span class="sep">·</span><span>memory <em id="ledger-memory">thin</em></span></div>
+  <div class="meta-last"><span class="k">last</span><span class="sep">·</span><span id="ledger-last">—</span></div>
+</aside>
+
+<footer class="hint">
+  <span>move slowly to leave a trace — trace the faint figure to teach — stillness lets them replay</span>
+</footer>
+
+<script src="vestigrin.js"></script>
+</body>
+</html>
